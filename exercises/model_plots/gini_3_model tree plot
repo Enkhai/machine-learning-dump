@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="mean concave points <= 0.049\ngini = 0.468\nsamples = 426\nvalue = [159, 267]\nclass = benign"] ;
+1 [label="mean radius <= 15.06\ngini = 0.095\nsamples = 261\nvalue = [13, 248]\nclass = benign"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="mean texture <= 21.575\ngini = 0.054\nsamples = 251\nvalue = [7, 244]\nclass = benign"] ;
+1 -> 2 ;
+3 [label="gini = 0.019\nsamples = 205\nvalue = [2, 203]\nclass = benign"] ;
+2 -> 3 ;
+4 [label="gini = 0.194\nsamples = 46\nvalue = [5, 41]\nclass = benign"] ;
+2 -> 4 ;
+5 [label="mean texture <= 19.83\ngini = 0.48\nsamples = 10\nvalue = [6, 4]\nclass = malignant"] ;
+1 -> 5 ;
+6 [label="gini = 0.444\nsamples = 6\nvalue = [2, 4]\nclass = benign"] ;
+5 -> 6 ;
+7 [label="gini = 0.0\nsamples = 4\nvalue = [4, 0]\nclass = malignant"] ;
+5 -> 7 ;
+8 [label="mean texture <= 15.425\ngini = 0.204\nsamples = 165\nvalue = [146, 19]\nclass = malignant"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="mean perimeter <= 102.25\ngini = 0.459\nsamples = 14\nvalue = [5, 9]\nclass = benign"] ;
+8 -> 9 ;
+10 [label="gini = 0.0\nsamples = 9\nvalue = [0, 9]\nclass = benign"] ;
+9 -> 10 ;
+11 [label="gini = 0.0\nsamples = 5\nvalue = [5, 0]\nclass = malignant"] ;
+9 -> 11 ;
+12 [label="mean concavity <= 0.071\ngini = 0.124\nsamples = 151\nvalue = [141, 10]\nclass = malignant"] ;
+8 -> 12 ;
+13 [label="gini = 0.32\nsamples = 5\nvalue = [1, 4]\nclass = benign"] ;
+12 -> 13 ;
+14 [label="gini = 0.079\nsamples = 146\nvalue = [140, 6]\nclass = malignant"] ;
+12 -> 14 ;
+}

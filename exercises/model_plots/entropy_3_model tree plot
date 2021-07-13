@@ -1,0 +1,28 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="mean concave points <= 0.049\nentropy = 0.953\nsamples = 426\nvalue = [159, 267]\nclass = benign"] ;
+1 [label="mean area <= 700.4\nentropy = 0.286\nsamples = 261\nvalue = [13, 248]\nclass = benign"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="mean texture <= 18.12\nentropy = 0.184\nsamples = 251\nvalue = [7, 244]\nclass = benign"] ;
+1 -> 2 ;
+3 [label="entropy = 0.0\nsamples = 139\nvalue = [0, 139]\nclass = benign"] ;
+2 -> 3 ;
+4 [label="entropy = 0.337\nsamples = 112\nvalue = [7, 105]\nclass = benign"] ;
+2 -> 4 ;
+5 [label="mean texture <= 19.83\nentropy = 0.971\nsamples = 10\nvalue = [6, 4]\nclass = malignant"] ;
+1 -> 5 ;
+6 [label="entropy = 0.918\nsamples = 6\nvalue = [2, 4]\nclass = benign"] ;
+5 -> 6 ;
+7 [label="entropy = 0.0\nsamples = 4\nvalue = [4, 0]\nclass = malignant"] ;
+5 -> 7 ;
+8 [label="mean texture <= 20.235\nentropy = 0.515\nsamples = 165\nvalue = [146, 19]\nclass = malignant"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="mean area <= 790.85\nentropy = 0.838\nsamples = 71\nvalue = [52, 19]\nclass = malignant"] ;
+8 -> 9 ;
+10 [label="entropy = 1.0\nsamples = 38\nvalue = [19, 19]\nclass = malignant"] ;
+9 -> 10 ;
+11 [label="entropy = 0.0\nsamples = 33\nvalue = [33, 0]\nclass = malignant"] ;
+9 -> 11 ;
+12 [label="entropy = 0.0\nsamples = 94\nvalue = [94, 0]\nclass = malignant"] ;
+8 -> 12 ;
+}
