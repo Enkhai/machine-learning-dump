@@ -1,3 +1,3 @@
 # machine-learning-dump
 
-A collection of various machine learning exercises and hand-crafted algorithm implementations
+A collection of machine learning exercises, hand-crafted algorithms, BSc and MSc projects and freelance assignments
