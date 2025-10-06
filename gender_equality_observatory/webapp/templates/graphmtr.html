@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+
+{% block title %}Graph Info{% endblock %}
+
+{% block content %}
+<div class="container row w-100 justify-content-center">
+    <div class="card-header text-white h4 mt-2 align-self-center w-75 justify-content-center text-center row rounded bg-secondary">{{gettext('General Info About the Graph')}}</div>
+<div class="row container align-self-center w-75 mt-2">
+        {% for item in info%}
+        <div class="col w-25 card border-info mx-1 mb-3">
+          <div class="card-header h5 text-center"><b>{{gettext('Number of')}} {{gettext(item[0])}}</b></div>
+          <div class="card-body text-center text-info">
+            <h3 class="card-title text-center">{{item[1]}}</h3>
+            <h6 class="card-text"><i>{{gettext('different')}} {{gettext(item[0])}}</i></h6>
+          </div>
+        </div>
+        {% endfor%}
+</div>
+<div class="container mt-2 align-self-center justify-content-center">
+
+    <div class="row justify-content-center">
+        <div class="col-md-2">
+          <div class="card-counter primary" title="The Louvain method is an algorithm to detect communities in large networks. It maximizes a modularity score for each community, where the modularity quantifies the quality of an assignment of nodes to communities. This means evaluating how much more densely connected the nodes within a community are, compared to how connected they would be in a random network.">
+            <i class="fa fa-users"></i>
+            <span class="count-numbers">{{louvain}}</span>
+            <span class="count-name" >Louvain</span>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="card-counter success" title="Component of an undirected graph is an induced subgraph in which any two vertices are connected to each other by paths, and which is connected to no additional vertices in the rest of the graph.">
+            <i class="fa fa-users"></i>
+            <span class="count-numbers">{{wcc}}</span>
+            <span class="count-name">CC</span>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="card-counter info" title="A triangle is a set of 3 vertices such that any two of them are connected by an edge of the graph; the graph is then said to 'contain' that triangle. ">
+            <i class="fa fa-users"></i>
+            <span class="count-numbers">{{triangles}}</span>
+            <span class="count-name">{{gettext('Triangles')}}</span>
+          </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card-counter warning" title="Modularity measures the strength of division of a network into modules (also called groups, clusters or communities). Networks with high modularity have dense connections between the nodes within modules but sparse connections between nodes in different modules. ">
+              <i class="fa fa-users"></i>
+              <span class="count-numbers">{{modularity}}</span>
+              <span class="count-name">Modularity</span>
+            </div>
+          </div>
+      </div>
+</div>
+</div>
+
+<script>
+  function draw() {
+      var config = {
+          container_id: "viz",
+          server_url: "bolt://localhost:7687",
+          server_user: "neo4j",
+          server_password: "a",
+          labels: {
+              "University": {
+                  caption: "name",
+                 
+              },
+              "Department": {
+                  caption: "name",
+                  
+                 
+              },
+              "Professor": {
+                  caption: "name",
+                  community:"genderFlag",
+                  imageUrl: "url_picture",
+                  
+              },
+              
+              
+          },
+          
+          relationships: {
+              "belongsTo": {
+                  caption: false
+                  
+              },
+              "worksAt":{
+                caption:false
+
+              }
+          },
+         
+          
+         
+          initial_cypher: "MATCH (p:Professor)-[r1:worksAt]->(d:Department)-[r2:belongsTo]->(u:University) RETURN *"
+      }
+
+      var viz = new NeoVis.default(config);
+      viz.render();
+
+      var config1 = {
+          container_id: "viz1",
+          server_url: "bolt://localhost:7687",
+          server_user: "neo4j",
+          server_password: "a",
+          labels: {
+              "University": {
+                  caption: "name",
+                 
+              },
+              "Department": {
+                  caption: "name",
+                  
+                 
+              },
+              "Professor": {
+                  caption: "name",
+                  community:"genderFlag",
+                  imageUrl: "url_picture",
+                  
+              },
+              "Coauthor":
+                    {
+                        caption:"name",
+                        size:"citedby",
+                        community:"genderFlag"
+                    }
+              
+              
+          },
+          
+          relationships: {
+              "cooperateWith": {
+                  caption: false,
+                  thickness:"citedby"
+                  
+              },
+              "worksAt":{
+                caption:false
+
+              },
+              "belongsTo":{
+                caption:false
+              }
+          },
+         
+          
+         
+          initial_cypher: "MATCH (n:Coauthor)-[r:cooperateWith]->(p:Professor) RETURN *"
+      }
+
+      var viz1 = new NeoVis.default(config1);
+      viz1.render();
+
+
+
+
+      
+    
+  }
+</script>
+<body onload="draw()">
+
+  
+<br>
+<br>
+<div class="container" >
+  <div class="row justify-content-center" style="margin-left: 5em;">
+  <h5>{{gettext('Professor Gender')}}:</h5>   <!-- press the radio buttons and then press the thrid tab-->
+  <div class="col">
+    <input type="radio" name="prof" value="M">{{gettext('Male')}}</input>
+    <input type="radio" name="prof" value="F">{{gettext('Female')}}</input>
+</div>
+
+<h5>{{gettext('CoAuthor Gender')}}:</h5>
+<div class="col">
+  <input type="radio" name="coauthors" value="M">{{gettext('Male')}}</input>
+  <input type="radio" name="coauthors" value="F">{{gettext('Female')}}</input>
+</div>
+</div>
+</div>
+<br>
+<div class="container">
+  
+
+    <div class="tab row justify-content-center">
+      <button class="tablinks col" onclick="openCity(event, 'London')">{{ gettext('Professors Department Universities') }}</button>
+      <button class="tablinks col" onclick="openCity(event, 'Paris')">{{ gettext('All CoAuthors') }}</button>
+      <button class="tablinks col" onclick="openCity(event, 'Tokyo'),ProGenderCoauthors();">{{ gettext('Professor-Gender-CoAuthor') }}</button>
+    </div>
+    
+    <div id="London" class="tabcontent">
+      
+        <div id="viz"  style="height: 500px!important; width: 100%!important;"></div>    
+    
+    </div>
+    
+    <div id="Paris" class="tabcontent">
+      <div id="viz1"  style="height: 500px!important; width: 100%!important;"></div>   
+    </div>
+    
+    <div id="Tokyo" class="tabcontent">
+      <div id="viz2"  style="height: 500px!important; width: 100%!important;"></div>
+    </div>
+</div>
+
+
+
+    <script>
+
+      function ProGenderCoauthors(){
+        var profg=document.querySelector('input[name = "prof"]:checked').value;
+        var cog=document.querySelector('input[name = "coauthors"]:checked').value;
+       
+        var config2 = {
+          container_id: "viz2",
+          server_url: "bolt://localhost:7687",
+          server_user: "neo4j",
+          server_password: "a",
+          labels: {
+              "Professor": {
+                  caption: "name",
+                  community:"genderFlag",
+                  imageUrl: "url_picture",
+                  
+              },
+              "Coauthor":
+                    {
+                        caption:"name",
+                        size:"citedby",
+                        community:"genderFlag"
+                    }              
+          },
+          
+          relationships: {
+              "cooperateWith": {
+                  caption: false,
+                  thickness:"citedby" 
+              }
+          },
+            initial_cypher: "MATCH (p1:Professor {gender:'"+profg+"'})-[r:cooperateWith]->(c:Coauthor {gender:'"+cog+"'}) RETURN *"
+      }
+
+      var viz2 = new NeoVis.default(config2);
+      viz2.render();
+
+      }
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+
+
+  <script>
+      $('#myCollapsible').collapse({
+toggle: false
+})
+  </script>
+
+{% endblock %}

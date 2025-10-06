@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{uni}}{% endblock %}
+
+{% block content %}
+
+
+<div class="card rounded-lg container text-center">
+
+    <div class="card-title text-white bg-info rounded mx-3 my-3 p-2">
+        <div class="mbr-text text-white display-5 my-2">
+            <a href="{{link}}" target="_blank" class="text-white"><u>{{gettext(uni)}}</u></a>
+        </div>
+    </div>
+    <div class="card-body row " style="overflow: auto;">
+        {% for row in profs %}
+    
+            <div class="row">
+
+                
+                    <h3 class="mbr-text text-white rounded mx-3 my-3 p-2" style="background-color: #E8B499; margin-bottom: 10px";> {{gettext(row[0])}}</h3>
+                  
+                        <div class="container-fluid">
+                        <table class="table">
+                      <div class="d-grid gap-2">
+                        
+                        {% for prof in row[1] %} 
+                            
+                                
+                                <a href= "{{url_for('profinfo',prof=prof)}}", class="btn btn-secondary active mbr-text " style="width: 230px;" type="button">{{ prof }}</a>
+                               
+
+                                       {% endfor %}
+                                    </div>
+                                
+                    </table>
+                    </div>
+                </div>
+                
+    
+           
+    
+        {% endfor %}
+        </div>
+</div>
+
+
+{%  endblock %}
