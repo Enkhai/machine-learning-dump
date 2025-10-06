@@ -1,7 +1,3 @@
-parameter,value
-clusters,5.0
-representatives,4.0
-shrinking factor,0.5
-partitions,5.0
-sample size,8035.0
-total points,169240.0
+version https://git-lfs.github.com/spec/v1
+oid sha256:3511e0dbf7cd460f27813051aee949bf45e6b490998c995cf7c6e982dd051b39
+size 133
