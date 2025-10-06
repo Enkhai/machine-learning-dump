@@ -1,0 +1,86 @@
+# --- General OS/filesystem cruft ---
+.DS_Store
+Thumbs.db
+$RECYCLE.BIN/
+
+# --- Python bytecode/cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+.conda/
+.python-version
+
+# --- Packaging / distribution ---
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# --- Testing / coverage / tooling caches ---
+.pytest_cache/
+.coverage
+.coverage.*
+.cache/
+.tox/
+.nox/
+.mypy_cache/
+.pyre/
+.hypothesis/
+ruff_cache/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Logs & temp ---
+logs/
+*.log
+/tmp/
+/tmp*/
+/temp/
+*.tmp
+
+# --- IDE / Editor ---
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+.history/
+
+# --- Data & experiment artifacts (typical ML folders) ---
+data/
+datasets/
+input/
+outputs/
+output/
+artifacts/
+checkpoints/
+models/
+runs/
+wandb/
+mlruns/
+lightning_logs/
+
+# --- Images generated during experiments (keep if you explicitly add) ---
+# plots/
+# figures/
+
+# --- Docker / Compose ---
+.env
+.env.*
+.docker/
+docker-data/
+
+# --- Misc ---
+*.bak
+*.orig
+*.rej

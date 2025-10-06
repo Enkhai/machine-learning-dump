@@ -1,0 +1,31 @@
+version: "3.9"
+
+x-app-base: &app-base
+  image: ml-assignment:latest
+  working_dir: /app
+  volumes:
+    - ./:/app
+
+services:
+  # Build image once (optional helper). You can run: docker compose build builder
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ml-assignment:latest
+    profiles: ["build"]
+
+  train_agents:
+    <<: *app-base
+    command: python train_agents.py --M 6 --N 6 --K 5 --B 0 --ppo_envs 8 --ppo_timesteps 1000000 --dqn_timesteps 1000000 --out_dir models
+    profiles: ["train"]
+
+  evaluate_ppo_agent:
+    <<: *app-base
+    command: python eval_agent.py --algo ppo --model /app/models/ppo/ppo_grid_final.zip --episodes 100 --M 6 --N 6 --K 5 --B 0
+    profiles: ["eval"]
+
+  evaluate_dqn_agent:
+    <<: *app-base
+    command: python eval_agent.py --algo dqn --model /app/models/dqn/dqn_grid_final.zip --episodes 100 --M 6 --N 6 --K 5 --B 0
+    profiles: ["eval"]
