@@ -1,0 +1,16 @@
+method,next_words,seed,k,temp,p
+greedy,100,A blonde goes to the library and says to the librarian ,0.0,0.0,0.0
+greedy,100,"""Your honor, my client is innocent!"". ""Alright, Mr. George. Prove it."", said the judge.",0.0,0.0,0.0
+greedy,100,"The man in the white suit lowered his hat. ""Why do you keep looking at me like that?"", he asked.",0.0,0.0,0.0
+beam search,100,"""Doctor, what is my condition? Am I going to be okay?"", asked the woman. The doctor looked at ",8.0,0.0,0.0
+beam search,100,"A monkey, a donkey and a cow were travelling across the desert. Suddenly, a camel sees them.",8.0,0.0,0.0
+beam search,100,"The man in the white suit lowered his hat. ""Why do you keep looking at me like that?"", he asked.",8.0,0.0,0.0
+sample,100,"A parrot, a horse and a lion walk into a bar. The parrot says ",0.0,0.4,0.0
+sample,100,Knock knock!. Who is there? You know who? Who?,0.0,0.4,0.0
+sample,100,A blonde goes to the library and says to the librarian ,0.0,0.4,0.0
+sample,100,A blonde goes to the library and says to the librarian ,5.0,0.4,0.0
+sample,100,"A monkey, a donkey and a cow were travelling across the desert. Suddenly, a camel sees them.",5.0,0.4,0.0
+sample,100,Knock knock!. Who is there? You know who? Who?,5.0,0.4,0.0
+sample,100,"""Doctor, what is my condition? Am I going to be okay?"", asked the woman. The doctor looked at ",0.0,0.4,0.003
+sample,100,"A parrot, a horse and a lion walk into a bar. The parrot says ",0.0,0.4,0.003
+sample,100,Knock knock!. Who is there? You know who? Who?,0.0,0.4,0.003
