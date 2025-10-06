@@ -1,0 +1,3 @@
+*.jovianrc
+*.model
+.ipynb_checkpoints
